@@ -19,9 +19,15 @@ class MainWindow : public QMainWindow {
     private:
         Ui::MainWindow *ui;
         QCPGraph* points;
+        QCPGraph* redPoints;
+        QCPGraph* bluePoints;
 
     public slots:
         void plotClick( QMouseEvent* );
-    };
+
+    private slots:
+        void on_redRadBttn_toggled(bool checked);
+        void on_blueRadBttn_toggled(bool checked);
+};
 
 #endif // MAINWINDOW_H

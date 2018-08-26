@@ -17,12 +17,201 @@
    <widget class="QCustomPlot" name="perceptronPlot" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>20</y>
       <width>400</width>
       <height>400</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QCustomPlot" name="errorPlot" native="true">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>20</y>
+      <width>400</width>
+      <height>400</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="initializeBttn">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>470</y>
+      <width>87</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Inicializar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="trainBttn">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>510</y>
+      <width>87</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Entrenar</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="classSelectGB">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>440</y>
+      <width>171</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Seleccionar clase</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QRadioButton" name="redRadBttn">
+       <property name="text">
+        <string>Rojo</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="blueRadBttn">
+       <property name="text">
+        <string>Azul</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="paramGB">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>440</y>
+      <width>211</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Parámetros</string>
+    </property>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="lrLbl">
+       <property name="text">
+        <string>Learning Rate: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="meLbl">
+       <property name="text">
+        <string>Máx Epochs:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="lrSB"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="meSB"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="paramGB_2">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>440</y>
+      <width>131</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Pesos:</string>
+    </property>
+    <layout class="QFormLayout" name="formLayout_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="weight1Lbl">
+       <property name="text">
+        <string>Weight 1:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="weight2Lbl">
+       <property name="text">
+        <string>Weight 2:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="w1ValLbl">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="w2ValLbl">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="paramGB_3">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>440</y>
+      <width>131</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Épocas:</string>
+    </property>
+    <layout class="QFormLayout" name="formLayout_4">
+     <item row="0" column="0">
+      <widget class="QLabel" name="currentEpochLbl">
+       <property name="text">
+        <string>Actual:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="convLbl">
+       <property name="text">
+        <string>Convergencia:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="currentEpochLbl_2">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="convLbl_2">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
