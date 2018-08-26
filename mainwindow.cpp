@@ -65,3 +65,11 @@ void MainWindow::on_blueRadBttn_toggled(bool checked) {
         points = bluePoints;
         }
     }
+
+void MainWindow::on_initializeBttn_clicked() {
+
+    }
+
+void MainWindow::on_trainBttn_clicked() {
+
+    }

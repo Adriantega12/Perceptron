@@ -28,6 +28,8 @@ class MainWindow : public QMainWindow {
     private slots:
         void on_redRadBttn_toggled(bool checked);
         void on_blueRadBttn_toggled(bool checked);
+        void on_initializeBttn_clicked();
+        void on_trainBttn_clicked();
 };
 
 #endif // MAINWINDOW_H
