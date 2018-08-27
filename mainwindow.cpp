@@ -50,6 +50,8 @@ void MainWindow::plotClick( QMouseEvent* event ) {
         double y = ui->perceptronPlot->yAxis->pixelToCoord( event->y() );
         points->addData( x, y );
         qDebug() << x << " " << y;
+        perp.addData( x, y, (ui->redRadBttn->isChecked() ?
+                                 Perceptron::Type::RED : Perceptron::Type::BLUE) );
         ui->perceptronPlot->replot();
         }
     }
@@ -67,9 +69,31 @@ void MainWindow::on_blueRadBttn_toggled(bool checked) {
     }
 
 void MainWindow::on_initializeBttn_clicked() {
+    onScreenW1 = /*QRandomGenerator::global()->generateDouble()*/0.1;
+    onScreenW2 = 0.02;
+    learningRate = ui->lrSB->value();
+    maxEpochs = ui->meSB->value();
 
+    ui->w1ValLbl->setText( QString::number( onScreenW1 ) );
+    ui->w2ValLbl->setText( QString::number( onScreenW2 ) );
     }
 
 void MainWindow::on_trainBttn_clicked() {
+    bool done = false;
+    double error;
 
+    perp.setup( onScreenW1, onScreenW2 );
+
+    while ( !done ) {
+        done = true;
+        for ( int j = 0; j < perp.getSizeOfDataVector(); ++j ) {
+            error = perp.valueAt(j) - 0/*pw(xj)*/;
+            if ( error != 0 ) {
+                done = false;
+                //perp.setWeight1( perp.getWeight1() + perp.getWeight1() * learningRate *  );
+                onScreenW1 = onScreenW1 + onScreenW1 * learningRate * perp.keyAt( j );
+                onScreenW1 = onScreenW1 + onScreenW1 * learningRate * perp.keyAt( j );
+                }
+            }
+        }
     }
