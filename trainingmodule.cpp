@@ -28,6 +28,10 @@ int TrainingModule::perceptWeight( unsigned int j ) {
     return 0;
     }
 
+double TrainingModule::linearCombination( double w1, double w2, unsigned int j ) {
+    return -1 * /*theta*/1 + w1 * trainingSet.at(j).x + w2 * trainingSet.at(j).y;
+    }
+
 int TrainingModule::getDataTypeAt( unsigned int j ) {
     return trainingSet.at(j).type;
     }

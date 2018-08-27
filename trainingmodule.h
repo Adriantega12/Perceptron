@@ -14,6 +14,7 @@ class TrainingModule{
             };
 
         double learningRate;
+        double theta;
         double weight1;
         double weight2;
 
@@ -31,6 +32,7 @@ class TrainingModule{
         void update( unsigned int, int );
 
         int perceptWeight( unsigned int );
+        double linearCombination( double, double, unsigned int );
 
         int getDataTypeAt( unsigned int );
         unsigned int getSizeOfTrainingSet();
