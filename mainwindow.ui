@@ -123,10 +123,18 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QDoubleSpinBox" name="lrSB"/>
+      <widget class="QDoubleSpinBox" name="lrSB">
+       <property name="singleStep">
+        <double>0.010000000000000</double>
+       </property>
+      </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QSpinBox" name="meSB"/>
+      <widget class="QSpinBox" name="meSB">
+       <property name="maximum">
+        <number>100000</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -136,17 +144,38 @@
       <x>470</x>
       <y>440</y>
       <width>131</width>
-      <height>91</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="title">
      <string>Pesos:</string>
     </property>
     <layout class="QFormLayout" name="formLayout_3">
-     <item row="0" column="0">
+     <item row="1" column="0">
       <widget class="QLabel" name="weight1Lbl">
        <property name="text">
         <string>Weight 1:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="w1ValLbl">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="weight0Lbl">
+       <property name="text">
+        <string>Weight 0:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="w0ValLbl">
+       <property name="text">
+        <string>X</string>
        </property>
       </widget>
      </item>
@@ -154,13 +183,6 @@
       <widget class="QLabel" name="weight2Lbl">
        <property name="text">
         <string>Weight 2:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="w1ValLbl">
-       <property name="text">
-        <string>X</string>
        </property>
       </widget>
      </item>
@@ -223,7 +245,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

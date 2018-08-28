@@ -14,11 +14,15 @@ class TrainingModule{
             };
 
         double learningRate;
-        double theta;
+        double weight0;
         double weight1;
         double weight2;
+        double slope;
+        double intercept;
 
         std::vector<Data> trainingSet;
+
+        void updateSlopeAndIntercept();
 
     public:
         static const int RED = 0;
@@ -28,7 +32,7 @@ class TrainingModule{
 
         void addData( double, double, int );
 
-        void setup( double, double, double );
+        void setup( double, double, double, double );
         void update( unsigned int, int );
 
         int perceptWeight( unsigned int );
@@ -37,8 +41,11 @@ class TrainingModule{
         int getDataTypeAt( unsigned int );
         unsigned int getSizeOfTrainingSet();
         double getLearningRate();
+        double getWeight0();
         double getWeight1();
         double getWeight2();
+        double getSlope();
+        double getIntercept();
 
     };
 

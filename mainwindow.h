@@ -2,14 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
 //#include <QRandomGenerator>
 
 #include "qcustomplot.h"
-<<<<<<< HEAD
-#include "perceptron.h"
-=======
 #include "trainingmodule.h"
->>>>>>> 9b2cf55cbd3e29298ee60b7d06689162f3bacca8
 
 namespace Ui {
     class MainWindow;
@@ -27,13 +24,14 @@ class MainWindow : public QMainWindow {
         QCPGraph* points;
         QCPGraph* redPoints;
         QCPGraph* bluePoints;
-        Perceptron perp;
         double onScreenW1;
         double onScreenW2;
         double learningRate;
         int maxEpochs;
 
         TrainingModule tm;
+        QVector<double> lineX;
+        QVector<double> lineY;
 
     public slots:
         void plotClick( QMouseEvent* );
