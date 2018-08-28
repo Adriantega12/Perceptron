@@ -77,9 +77,9 @@ void MainWindow::on_blueRadBttn_toggled(bool checked) {
     }
 
 void MainWindow::on_initializeBttn_clicked() {
-    double onScreenWeight0 = 0.02,
-           onScreenWeight1 = 0.01,
-           onScreenWeight2 = 0.1;
+    double onScreenWeight0 = tm.generateRandomDoubleNumber( -5.0, 5.0 ),
+           onScreenWeight1 = tm.generateRandomDoubleNumber( -5.0, 5.0 ),
+           onScreenWeight2 = tm.generateRandomDoubleNumber( -5.0, 5.0 );
 
     // Inicializar pesos
     ui->w0ValLbl->setText( QString::number(onScreenWeight0) );

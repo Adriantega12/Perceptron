@@ -143,7 +143,7 @@
      <rect>
       <x>470</x>
       <y>440</y>
-      <width>131</width>
+      <width>171</width>
       <height>111</height>
      </rect>
     </property>
@@ -198,7 +198,7 @@
    <widget class="QGroupBox" name="paramGB_3">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>650</x>
       <y>440</y>
       <width>131</width>
       <height>91</height>

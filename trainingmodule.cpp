@@ -72,3 +72,11 @@ double TrainingModule::getSlope() {
 double TrainingModule::getIntercept() {
     return intercept;
     }
+
+double TrainingModule::generateRandomDoubleNumber( double a, double b ) {
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    static std::default_random_engine generator(seed);
+    std::uniform_real_distribution<double> distribution(a, b);
+    double dice_roll = distribution(generator);
+    return dice_roll;
+    }

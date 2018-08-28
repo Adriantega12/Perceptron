@@ -4,6 +4,8 @@
 #include <QLabel>
 
 #include <vector>
+#include <random>
+#include <chrono>
 
 class TrainingModule{
     private:
@@ -46,6 +48,8 @@ class TrainingModule{
         double getWeight2();
         double getSlope();
         double getIntercept();
+
+        static double generateRandomDoubleNumber(double, double);
 
     };
 
