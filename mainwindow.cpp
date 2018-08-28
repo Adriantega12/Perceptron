@@ -6,8 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-
-
     // Inicializar puntos
     redPoints = new QCPGraph( ui->perceptronPlot->xAxis, ui->perceptronPlot->yAxis );
     bluePoints = new QCPGraph( ui->perceptronPlot->xAxis, ui->perceptronPlot->yAxis );
@@ -18,9 +16,19 @@ MainWindow::MainWindow(QWidget *parent) :
     bluePoints->setScatterStyle(QCPScatterStyle::ssCircle);
     bluePoints->setPen( QPen(Qt::blue) );
 
+    // Inicializar puntos de línea
+    ui->perceptronPlot->addGraph();
+    lineX.push_back(-6);
+    lineX.push_back(0);
+    lineX.push_back(6);
+    lineY.push_back(0);
+    lineY.push_back(0);
+    lineY.push_back(0);
+
     points = redPoints;
 
     // Inicializar plot
+    // Ejes
     ui->perceptronPlot->xAxis->setRange(-5, 5);
     ui->perceptronPlot->yAxis->setRange(-5, 5);
     ui->perceptronPlot->xAxis2->setRange(-5, 5);
@@ -69,11 +77,23 @@ void MainWindow::on_blueRadBttn_toggled(bool checked) {
     }
 
 void MainWindow::on_initializeBttn_clicked() {
-    double onScreenWeight1 = 0.01,
+    double onScreenWeight0 = 0.02,
+           onScreenWeight1 = 0.01,
            onScreenWeight2 = 0.1;
+
+    // Inicializar pesos
+    ui->w0ValLbl->setText( QString::number(onScreenWeight0) );
     ui->w1ValLbl->setText( QString::number(onScreenWeight1) );
     ui->w2ValLbl->setText( QString::number(onScreenWeight2) );
-    tm.setup(onScreenWeight1, onScreenWeight2, ui->lrSB->value());
+    tm.setup(onScreenWeight0, onScreenWeight1, onScreenWeight2, ui->lrSB->value());
+
+    // Inicializar línea
+    lineY[0] = tm.getSlope() * lineX[0] + tm.getIntercept();
+    lineY[1] = tm.getSlope() * lineX[1] + tm.getIntercept();
+    lineY[2] = tm.getSlope() * lineX[2] + tm.getIntercept();
+    ui->perceptronPlot->graph(2)->setData(lineX, lineY);
+    ui->perceptronPlot->replot();
+
     ui->trainBttn->setEnabled(true);
     }
 
@@ -87,16 +107,26 @@ void MainWindow::on_trainBttn_clicked() {
     while (epochs < maxEpochs and !done) {
         done = true;
         for (unsigned int j = 0; j < tm.getSizeOfTrainingSet(); ++j) {
-            error = tm.getDataTypeAt(j) - tm.perceptWeight(j);
+            int type = tm.getDataTypeAt(j);
+            int pw = tm.perceptWeight(j);
+            error = type - pw;
             if (error != 0) {
                 done = false;
                 tm.update(j, error);
+                ui->w0ValLbl->setText( QString::number(tm.getWeight0()) );
                 ui->w1ValLbl->setText( QString::number(tm.getWeight1()) );
                 ui->w2ValLbl->setText( QString::number(tm.getWeight2()) );
+                lineY[0] = tm.getSlope() * lineX[0] + tm.getIntercept();
+                lineY[1] = tm.getSlope() * lineX[1] + tm.getIntercept();
+                lineY[2] = tm.getSlope() * lineX[2] + tm.getIntercept();
+                ui->perceptronPlot->graph(2)->setData(lineX, lineY);
+                ui->perceptronPlot->replot();
+                ui->perceptronPlot->repaint();
                 }
             }
         epochs++;
         ui->currentEpochValLbl->setText( QString::number(epochs) );
+
         }
 
     ui->convValLbl->setText( QString::number(epochs) );

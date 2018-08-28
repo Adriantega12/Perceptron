@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
+//#include <QRandomGenerator>
 
 #include "qcustomplot.h"
 #include "trainingmodule.h"
@@ -22,8 +24,14 @@ class MainWindow : public QMainWindow {
         QCPGraph* points;
         QCPGraph* redPoints;
         QCPGraph* bluePoints;
+        double onScreenW1;
+        double onScreenW2;
+        double learningRate;
+        int maxEpochs;
 
         TrainingModule tm;
+        QVector<double> lineX;
+        QVector<double> lineY;
 
     public slots:
         void plotClick( QMouseEvent* );
