@@ -5,7 +5,11 @@
 //#include <QRandomGenerator>
 
 #include "qcustomplot.h"
+<<<<<<< HEAD
 #include "perceptron.h"
+=======
+#include "trainingmodule.h"
+>>>>>>> 9b2cf55cbd3e29298ee60b7d06689162f3bacca8
 
 namespace Ui {
     class MainWindow;
@@ -28,6 +32,8 @@ class MainWindow : public QMainWindow {
         double onScreenW2;
         double learningRate;
         int maxEpochs;
+
+        TrainingModule tm;
 
     public slots:
         void plotClick( QMouseEvent* );

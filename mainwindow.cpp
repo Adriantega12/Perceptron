@@ -49,6 +49,8 @@ void MainWindow::plotClick( QMouseEvent* event ) {
         double x = ui->perceptronPlot->xAxis->pixelToCoord( event->x() );
         double y = ui->perceptronPlot->yAxis->pixelToCoord( event->y() );
         points->addData( x, y );
+        tm.addData( x, y, (ui->redRadBttn->isChecked() ?
+                               TrainingModule::RED : TrainingModule::BLUE) );
         qDebug() << x << " " << y;
         perp.addData( x, y, (ui->redRadBttn->isChecked() ?
                                  Perceptron::Type::RED : Perceptron::Type::BLUE) );
@@ -69,31 +71,35 @@ void MainWindow::on_blueRadBttn_toggled(bool checked) {
     }
 
 void MainWindow::on_initializeBttn_clicked() {
-    onScreenW1 = /*QRandomGenerator::global()->generateDouble()*/0.1;
-    onScreenW2 = 0.02;
-    learningRate = ui->lrSB->value();
-    maxEpochs = ui->meSB->value();
-
-    ui->w1ValLbl->setText( QString::number( onScreenW1 ) );
-    ui->w2ValLbl->setText( QString::number( onScreenW2 ) );
+    double onScreenWeight1 = 0.01,
+           onScreenWeight2 = 0.1;
+    ui->w1ValLbl->setText( QString::number(onScreenWeight1) );
+    ui->w2ValLbl->setText( QString::number(onScreenWeight2) );
+    tm.setup(onScreenWeight1, onScreenWeight2, ui->lrSB->value());
+    ui->trainBttn->setEnabled(true);
     }
 
 void MainWindow::on_trainBttn_clicked() {
+    /*Bunch of enable code here*/
     bool done = false;
-    double error;
+    int error = 0;
+    int epochs = 0;
+    int maxEpochs = ui->meSB->value();
 
-    perp.setup( onScreenW1, onScreenW2 );
-
-    while ( !done ) {
+    while (epochs < maxEpochs and !done) {
         done = true;
-        for ( int j = 0; j < perp.getSizeOfDataVector(); ++j ) {
-            error = perp.valueAt(j) - 0/*pw(xj)*/;
-            if ( error != 0 ) {
+        for (unsigned int j = 0; j < tm.getSizeOfTrainingSet(); ++j) {
+            error = tm.getDataTypeAt(j) - tm.perceptWeight(j);
+            if (error != 0) {
                 done = false;
-                //perp.setWeight1( perp.getWeight1() + perp.getWeight1() * learningRate *  );
-                onScreenW1 = onScreenW1 + onScreenW1 * learningRate * perp.keyAt( j );
-                onScreenW1 = onScreenW1 + onScreenW1 * learningRate * perp.keyAt( j );
+                tm.update(j, error);
+                ui->w1ValLbl->setText( QString::number(tm.getWeight1()) );
+                ui->w2ValLbl->setText( QString::number(tm.getWeight2()) );
                 }
             }
+        epochs++;
+        ui->currentEpochValLbl->setText( QString::number(epochs) );
         }
+
+    ui->convValLbl->setText( QString::number(epochs) );
     }

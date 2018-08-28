@@ -201,14 +201,14 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="currentEpochLbl_2">
+      <widget class="QLabel" name="currentEpochValLbl">
        <property name="text">
         <string>X</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="convLbl_2">
+      <widget class="QLabel" name="convValLbl">
        <property name="text">
         <string>X</string>
        </property>
@@ -223,7 +223,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>23</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
