@@ -27,12 +27,12 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     qcustomplot.cpp \
-    perceptron.cpp
+    trainingmodule.cpp
 
 HEADERS += \
         mainwindow.h \
     qcustomplot.h \
-    perceptron.h
+    trainingmodule.h
 
 FORMS += \
         mainwindow.ui
