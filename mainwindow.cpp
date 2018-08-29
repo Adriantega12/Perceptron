@@ -6,6 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    // Inicialziar gráfica de error
+    ui->errorPlot->addGraph();
+    ui->errorPlot->xAxis->setLabel( "Epoch" );
+    ui->errorPlot->yAxis->setLabel( "Error acumulado" );
+
     // Inicializar puntos
     redPoints = new QCPGraph( ui->perceptronPlot->xAxis, ui->perceptronPlot->yAxis );
     bluePoints = new QCPGraph( ui->perceptronPlot->xAxis, ui->perceptronPlot->yAxis );
@@ -95,6 +100,10 @@ void MainWindow::on_initializeBttn_clicked() {
     ui->perceptronPlot->replot();
 
     ui->trainBttn->setEnabled(true);
+
+    ui->errorPlot->graph(0)->data()->clear();
+    ui->errorPlot->replot();
+    ui->errorPlot->repaint();
     }
 
 void MainWindow::on_trainBttn_clicked() {
@@ -103,9 +112,11 @@ void MainWindow::on_trainBttn_clicked() {
     int error = 0;
     int epochs = 0;
     int maxEpochs = ui->meSB->value();
+    int errorPerEpoch;
 
     while (epochs < maxEpochs and !done) {
         done = true;
+        errorPerEpoch = 0;
         for (unsigned int j = 0; j < tm.getSizeOfTrainingSet(); ++j) {
             int type = tm.getDataTypeAt(j);
             int pw = tm.perceptWeight(j);
@@ -122,11 +133,15 @@ void MainWindow::on_trainBttn_clicked() {
                 ui->perceptronPlot->graph(2)->setData(lineX, lineY);
                 ui->perceptronPlot->replot();
                 ui->perceptronPlot->repaint();
+                errorPerEpoch++;
                 }
+            ui->errorPlot->graph(0)->addData(epochs, errorPerEpoch);
+            ui->errorPlot->replot();
+            ui->errorPlot->repaint();
+            ui->errorPlot->rescaleAxes();
             }
         epochs++;
         ui->currentEpochValLbl->setText( QString::number(epochs) );
-
         }
 
     ui->convValLbl->setText( QString::number(epochs) );
